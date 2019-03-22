@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-6">
+    <h2><i class="fa fa-users"></i> Members</h2>
+  </div>
+  <div class="col-md-6">
+    <h5 class="pull-right text-muted">Total Balance: {{ totalBalance | currency:"USD":true}}</h5>
+  </div>
+</div>
+<table *ngIf="members?.length > 0;else noMembers" class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Balance</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let member of members">
+      <td>{{ member.$key }}</td>
+      <td>{{ member.firstName }}</td>
+      <td>{{ member.lastName }}</td>
+      <td>{{ member.email }}</td>
+      <td>{{ member.balance | currency:"USD":true }}</td>
+      <td><a [routerLink]="['/member/'+member.$key]" href="" class="btn btn-default btn-medium"><i class="fa fa-arrow-circle-right"></i> Details</a></td>
+    </tr>
+  </tbody>
+ 
+</table>
+
+<ng-template #noMembers>
+  <hr>
+  <h4>There is no record to show</h4>
+</ng-template>

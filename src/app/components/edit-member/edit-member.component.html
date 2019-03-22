@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="col-md-6">
+    <a [routerLink]="['/member/' + id]" href="#" class="btn btn-link"><i class="fa fa-arrow-circle-left"></i> Back To Details</a>
+  </div>
+  <div class="col-md-6">
+
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Edit Member
+  </div>
+  <div class="card-block">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="member.firstName"
+          name="firstName"
+          #memberFirstName="ngModel"
+          minlength="2"
+          required
+        >
+        <div *ngIf="memberFirstName.errors?.required && memberFirstName.touched" class="alert alert-danger">
+          First name is required
+        </div>
+        <div *ngIf="memberFirstName.errors?.minlength && memberFirstName.touched" class="alert alert-danger">
+          First name must be two or more characters
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="member.lastName"
+          name="lastName"
+          #memberLastName="ngModel"
+          minlength="2"
+          required
+        >
+        <div *ngIf="memberLastName.errors?.required && memberLastName.touched" class="alert alert-danger">
+          Last name is required
+        </div>
+        <div *ngIf="memberLastName.errors?.minlength && memberLastName.touched" class="alert alert-danger">
+          Last name must be two or more characters
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          [(ngModel)]="member.email"
+          name="email"
+          #memberEmail="ngModel"
+          required
+        >
+        <div *ngIf="memberEmail.errors?.required && memberEmail.touched" class="alert alert-danger">
+          Email required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="member.phone"
+          name="phone"
+          #memberPhone="ngModel"
+          minlength="10"
+          required
+        >
+        <div *ngIf="memberPhone.errors?.minlength && memberPhone.touched" class="alert alert-danger">
+          Phone number should be ten digits long
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="balance">Balance</label>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="member.balance"
+          name="balance"
+          #clientBalance="ngModel"
+          [disabled]="disableBalanceOnEdit"
+        >
+      </div>
+
+      <input type="submit" class="btn btn-primary btn-block" value="Submit">
+    </form>
+  </div>
+</div>
+
